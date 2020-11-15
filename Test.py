@@ -4,4 +4,29 @@ import random
 import Pokemon
 
 pikachu = Pokemon.Pokemon(25)
-pikachu.receive_damage(5, "ground")
+torterra = Pokemon.Pokemon(389)
+
+# Variables
+assert pikachu.name == "Pikachu"
+assert torterra.name == "Torterra"
+
+assert pikachu.types == ["electric"]
+assert torterra.types == ["grass", "ground"]
+
+assert pikachu.hp == 35
+assert pikachu.attack == 55
+assert pikachu.defense == 40
+assert pikachu.special_attack == 50
+assert pikachu.special_defense == 50
+assert pikachu.speed == 90
+assert pikachu.health == 35
+
+assert torterra.hp == 95
+assert torterra.attack == 109
+assert torterra.defense == 105
+assert torterra.special_attack == 75
+assert torterra.special_defense == 85
+assert torterra.speed == 56
+assert torterra.health == 95
+
+print("Done")
