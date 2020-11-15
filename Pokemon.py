@@ -94,4 +94,12 @@ class Pokemon:
                 if j["name"] == mov_type:
                     mult = mult * 0
 
+        # Flavor text
+        if(mult > 1):
+            print("It's super effective!!!")
+        elif(mult == 0):
+            print("Barely does damage...")
+        elif(mult < 1):
+            print("It's not very efective")
+
         return mult

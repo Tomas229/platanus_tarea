@@ -2,20 +2,23 @@ import Pokemon
 import random
 
 
-def makeTournament(n):
+def make_tournament(n):
     participants = []
     for i in range(n):
         id = random.randrange(152)
         if(id == 0):
             id = 389  # Torterra
         participants += [Pokemon.Pokemon(id)]
+
+    # flavor text
     print("The contestants for this tournament are:")
     for i in participants:
         print(i.name)
+
     return participants
 
 
-def beginTournament(tournament_list):
+def begin_tournament(tournament_list):
     print("Let the matches begin!")
     while(len(tournament_list) > 1):
         print("Its time for the next round of battles")
@@ -36,14 +39,16 @@ def battle(pokemon1, pokemon2):
     winner = None
     while(pokemon1.health > 0 and pokemon2.health > 0):
         if(pokemon1.speed > pokemon2.speed):
+            print(pokemon1.name+" attacks")
             pokemon1.inflict_damage(pokemon2)
+            print(pokemon2.name+" attacks")
             pokemon2.inflict_damage(pokemon1)
         else:
+            print(pokemon2.name+" attacks")
             pokemon2.inflict_damage(pokemon1)
+            print(pokemon1.name+" attacks")
             pokemon1.inflict_damage(pokemon2)
+
     winner = pokemon1 if pokemon1.health > 0 else pokemon2
     print("The winner is " + winner.name)
     return winner
-
-
-beginTournament(makeTournament(256))

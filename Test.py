@@ -2,6 +2,7 @@ import requests
 import json
 import random
 import Pokemon
+import Tournament
 
 pikachu = Pokemon.Pokemon(25)
 torterra = Pokemon.Pokemon(389)
@@ -29,4 +30,7 @@ assert torterra.special_defense == 85
 assert torterra.speed == 56
 assert torterra.health == 95
 
+pikachu.inflict_damage(torterra)
 print("Done")
+
+Tournament.begin_tournament(Tournament.make_tournament(8))
