@@ -1,5 +1,6 @@
 import requests
 import json
+import random
 
 
 type_dict = {}
@@ -12,4 +13,5 @@ for i in type_dict["grass"]["damage_relations"]["double_damage_from"]:
     if i["name"] == "fire":
         weakness_1 = 2
 
-print("hola")
+
+i = 2
