@@ -3,7 +3,8 @@ import json
 
 
 type_dict = {}
-for i in range(1, 19):
+num = 19
+for i in range(1, num):
     type_i = json.loads(requests.get(
         "https://pokeapi.co/api/v2/type/"+str(i)).text)
     type_dict[type_i["name"]] = type_i
@@ -13,7 +14,7 @@ class Pokemon:
     def __init__(self, id):
         # Preprocessing
         poke_req = requests.get("https://pokeapi.co/api/v2/pokemon/"+str(id))
-        poke_dict = res = json.loads(poke_req.text)
+        poke_dict = json.loads(poke_req.text)
         # Species
         self.name = poke_dict["species"]["name"]
         # Types
@@ -30,8 +31,32 @@ class Pokemon:
         self.health = self.hp
 
     def inflict_damage(self, enemy):
-        enemy.damage(self.attack)
+        val = max(self.attack, self.special_attack)
+        enemy.receive_damage(val, self.type_1)
 
-    def receive_damage(self, value, type):
-        mult = 1
-        self.hp = self.hp - value*mult
+    def receive_damage(self, value, mov_type):
+        damage = value
+        self.hp = self.hp - damage*self.multiplier_damage(mov_type)*
+
+    def multiplier_damage(self, mov_type):
+        weakness_1 = 1
+        for i in type_dict[self.type_1]["damage_relations"]["double_damage_from"]:
+            if i["name"] == self.type_1:
+                weakness_1 = 2
+
+        resistance_1 = 1
+        for i in type_dict[self.type_1]["damage_relations"]["half_damage_from"]:
+            if i["name"] == self.type_1:
+                resistance_1 = 0.5
+
+        weakness_2 = 1
+        for i in type_dict[self.type_2]["damage_relations"]["double_damage_from"]:
+            if i["name"] == self.type_2:
+                weakness_2 = 2
+
+        resistance_2 = 1
+        for i in type_dict[self.type_2]["damage_relations"]["half_damage_from"]:
+            if i["name"] == self.type_2:
+                resistance_2 = 0.5
+
+        return weakness_1*weakness_2*resistance_1*resistance_2
