@@ -2,16 +2,15 @@ import requests
 import json
 import random
 
-
 type_dict = {}
-for i in range(1, 19):
-    type_i = json.loads(requests.get(
-        "https://pokeapi.co/api/v2/type/"+str(i)).text)
+i = 1
+while(True):
+    req = requests.get("https://pokeapi.co/api/v2/type/"+str(i))
+    if(req.status_code == 404):
+        break
+    type_i = json.loads(req.text)
     type_dict[type_i["name"]] = type_i
-
-for i in type_dict["grass"]["damage_relations"]["double_damage_from"]:
-    if i["name"] == "fire":
-        weakness_1 = 2
+    i += 1
 
 
 i = 2
