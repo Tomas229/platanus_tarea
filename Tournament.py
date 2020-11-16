@@ -34,18 +34,14 @@ def battle(pokemon1, pokemon2):
     winner = None
     while(pokemon1.health > 0 and pokemon2.health > 0):
         if(pokemon1.speed > pokemon2.speed):
-            print(pokemon1.name+" attacks")
             pokemon1.inflict_damage(pokemon2)
-            print(pokemon2.name+" attacks")
             pokemon2.inflict_damage(pokemon1)
         else:
-            print(pokemon2.name+" attacks")
             pokemon2.inflict_damage(pokemon1)
-            print(pokemon1.name+" attacks")
             pokemon1.inflict_damage(pokemon2)
 
     winner = pokemon1 if pokemon1.health > 0 else pokemon2
-    print("The winner is " + winner.name)
+    print("The winner is " + winner.name+"!")
     return winner
 
 # bracket: list[Pokemon] -> list[Pokemon]
@@ -71,3 +67,7 @@ def begin_tournament(tournament_list):
         tournament_list = bracket(tournament_list)
     print("And the tournament winner is " + tournament_list[0].name)
     return tournament_list[0]
+
+
+# run
+begin_tournament(make_tournament(8))

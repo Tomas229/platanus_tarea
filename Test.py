@@ -32,7 +32,8 @@ assert torterra.speed == 56
 assert torterra.health == 95
 
 # methods
-pikachu.inflict_damage(torterra)
+# pikachu.inflict_damage(torterra)
+# TBA
 print("Done")
 
 Tournament.begin_tournament(Tournament.make_tournament(8))

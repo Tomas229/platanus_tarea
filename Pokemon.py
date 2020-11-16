@@ -56,6 +56,7 @@ class Pokemon:
     def inflict_damage(self, enemy):
         if(self.health <= 0):
             return
+        print(self.name+" attacks")
         val = max(self.attack, self.special_attack)
         enemy.receive_damage(val, self.types[0])
 
@@ -71,6 +72,9 @@ class Pokemon:
             damage * self.multiplier_damage(mov_type)*random_mult, 1)
 
         self.health = max(self.health - final_damage, 0)
+
+        # flavor text
+        print(self.name + " fainted") if self.health <= 0 else None
 
     # multiplier_damage: str -> int
     # returns the damage multiplier for type effectiveness
