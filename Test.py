@@ -4,6 +4,7 @@ import random
 import Pokemon
 import Tournament
 
+# Pokemon tests
 pikachu = Pokemon.Pokemon(25)
 torterra = Pokemon.Pokemon(389)
 
@@ -30,6 +31,7 @@ assert torterra.special_defense == 85
 assert torterra.speed == 56
 assert torterra.health == 95
 
+# methods
 pikachu.inflict_damage(torterra)
 print("Done")
 
